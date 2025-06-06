@@ -2,7 +2,6 @@ package com.example.todo.controller;
 
 import com.example.todo.model.Task;
 import com.example.todo.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,6 @@ import java.util.List;
 public class TaskController {
     private final TaskService taskService;
 
-    @Autowired
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
@@ -32,12 +30,12 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
-    @PutMapping
-    public Task updateTask(@RequestBody Task task) {
-        return taskService.updateTask(task);
+    @PutMapping("{id}")
+    public Task updateTask(@PathVariable Long id, @RequestBody Task task) {
+        return taskService.updateTask(id, task);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping
     public void deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
     }
