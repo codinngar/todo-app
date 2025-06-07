@@ -6,14 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tasks")
-public class Task {
+@Table(name = "task_lists")
+public class TaskList {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false, updatable = false)
@@ -21,12 +22,6 @@ public class Task {
 
     @Column(name = "title", nullable = false)
     private String title;
-
-    @Column(name = "status", nullable = false)
-    private TaskStatus status;
-
-    @Column(name = "priority", nullable = false)
-    private TaskPriority priority;
 
     @Column(name = "description")
     private String description;
@@ -37,7 +32,6 @@ public class Task {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_list_id")
-    private TaskList taskList;
+    @OneToMany(mappedBy = "taskList", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    private List<Task> tasks;
 }
