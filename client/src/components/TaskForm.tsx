@@ -39,6 +39,7 @@ const TaskForm: React.FC<Props> = ({ onTaskCreated }) => {
                 size="lg"
                 color="primary"
                 className="font-bold"
+                isDisabled={newTitle.trim() === ""}
             >
                 Add
             </Button>
