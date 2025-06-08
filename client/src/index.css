@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+td:first-child {
+    text-align: center;
+    width: 0;
+}
+
+th {
+    display: none;
+}
