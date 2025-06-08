@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Task } from "../types/Task";
-import { getAllTasks, toggleTask } from "../api/tasks";
+import { deleteTask, getAllTasks, toggleTask } from "../api/tasks";
 import TaskItem from "./TaskItem";
 
 interface Props {
@@ -27,10 +27,20 @@ const TaskList: React.FC<Props> = ({ newTask }) => {
         );
     };
 
+    const handleDelete = async (id: number) => {
+        await deleteTask(id);
+        setTasks((prev) => prev.filter((task) => task._id !== id));
+    };
+
     return (
         <div className="flex flex-col gap-4">
             {tasks.map((task) => (
-                <TaskItem key={task._id} task={task} onToggle={handleToggle} />
+                <TaskItem
+                    key={task._id}
+                    task={task}
+                    onToggle={handleToggle}
+                    onDelete={handleDelete}
+                />
             ))}
         </div>
     );

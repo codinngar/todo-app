@@ -24,6 +24,8 @@ const TaskForm: React.FC<Props> = ({ onTaskCreated }) => {
     return (
         <Form onSubmit={onSubmit} className="flex flex-row gap-4 mb-8">
             <Input
+                isRequired
+                errorMessage="Please enter a task"
                 variant="bordered"
                 size="lg"
                 name="title"
@@ -32,7 +34,12 @@ const TaskForm: React.FC<Props> = ({ onTaskCreated }) => {
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
             />
-            <Button type="submit" size="lg" color="primary">
+            <Button
+                type="submit"
+                size="lg"
+                color="primary"
+                className="font-bold"
+            >
                 Add
             </Button>
         </Form>

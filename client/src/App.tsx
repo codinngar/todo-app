@@ -12,7 +12,7 @@ const App = () => {
 
     return (
         <div className="p-8">
-            <h1 className="mb-12 text-3xl font-bold text-center">My Tasks</h1>
+            <h1 className="mb-8 text-3xl font-bold text-center">My Tasks</h1>
             <TaskForm onTaskCreated={handleTaskCreated} />
             <TaskList newTask={newTask} />
         </div>
