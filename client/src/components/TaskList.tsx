@@ -27,6 +27,12 @@ const TaskList: React.FC<Props> = ({ newTask }) => {
         );
     };
 
+    const handleEdit = (updated: Task) => {
+        setTasks((prev) =>
+            prev.map((task) => (task._id === updated._id ? updated : task))
+        );
+    };
+
     const handleDelete = async (id: number) => {
         await deleteTask(id);
         setTasks((prev) => prev.filter((task) => task._id !== id));
@@ -40,6 +46,7 @@ const TaskList: React.FC<Props> = ({ newTask }) => {
                     task={task}
                     onToggle={handleToggle}
                     onDelete={handleDelete}
+                    onEdit={handleEdit}
                 />
             ))}
         </div>
