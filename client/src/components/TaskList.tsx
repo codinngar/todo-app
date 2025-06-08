@@ -3,12 +3,22 @@ import type { Task } from "../types/Task";
 import { getAllTasks, toggleTask } from "../api/tasks";
 import TaskItem from "./TaskItem";
 
-const TaskList = () => {
+interface Props {
+    newTask?: Task;
+}
+
+const TaskList: React.FC<Props> = ({ newTask }) => {
     const [tasks, setTasks] = useState<Task[]>([]);
 
     useEffect(() => {
         getAllTasks().then(setTasks);
     }, []);
+
+    useEffect(() => {
+        if (newTask) {
+            setTasks((prev) => [newTask, ...prev]);
+        }
+    }, [newTask]);
 
     const handleToggle = async (id: number, completed: boolean) => {
         const updated = await toggleTask(id, completed);

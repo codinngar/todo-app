@@ -6,8 +6,8 @@ export const getAllTasks = async (): Promise<Task[]> => {
     return response.data;
 };
 
-export const createTask = async (todo: Partial<Task>): Promise<Task> => {
-    const response = await api.post("/tasks", todo);
+export const createTask = async (task: Partial<Task>): Promise<Task> => {
+    const response = await api.post("/tasks", task);
     return response.data;
 };
 
