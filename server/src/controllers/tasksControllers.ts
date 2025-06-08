@@ -6,7 +6,7 @@ export const getAllTasks = async (
     res: Response
 ): Promise<any> => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find().sort({ createdAt: -1 });
 
         res.status(200).send(tasks);
     } catch (error) {
@@ -63,7 +63,10 @@ export const updateTask = async (req: Request, res: Response): Promise<any> => {
     }
 };
 
-export const deleteAllTasks = async (req: Request, res: Response): Promise<any> => {
+export const deleteAllTasks = async (
+    req: Request,
+    res: Response
+): Promise<any> => {
     try {
         await Task.deleteMany();
 
