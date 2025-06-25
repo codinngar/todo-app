@@ -1,11 +1,15 @@
 import express from "express";
+import connectDB from "./db/connectDB.js";
+import taskRoutes from "./routes/task.route.js";
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use(express.json());
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is running");
+app.use("/api/v1/tasks", taskRoutes);
+
+connectDB().then(() => {
+  app.listen(process.env.PORT, () => {
+    console.log("Server is running");
+  });
 });
