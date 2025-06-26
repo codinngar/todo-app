@@ -11,13 +11,12 @@ import {
 
 const router = express.Router();
 
-router
-  .get("/", getAllTasks)
-  .get("/:id", getTaskById)
-  .post("/", createTask)
-  .patch("/:id/toggle", toggleTask)
-  .patch("/:id", updateTask)
-  .delete("/:id", deleteTask)
-  .delete("/", deleteAllTasks);
+router.get("/", getAllTasks);
+router.get("/:id", getTaskById);
+router.post("/", createTask);
+router.patch("/:id/toggle", toggleTask);
+router.patch("/:id", updateTask);
+router.delete("/:id", deleteTask);
+router.delete("/", deleteAllTasks);
 
 export default router;
